@@ -18,7 +18,8 @@ async function crackSafe() {
         if (direction === "L") {
             const leftRotation = dialPosition - partialRotation;
             dialPosition = leftRotation >= 0 ? leftRotation : 100 + leftRotation;
-        } else {
+        }
+        if (direction === "R") {
             const rightRotation = dialPosition + partialRotation;
             dialPosition = rightRotation <= 99 ? rightRotation : rightRotation - 100;
         }
