@@ -13,15 +13,11 @@ async function crackSafe() {
         const distance = Number(line.match(/\d+/g));
 
         // 0-99 = 100 ticks for a full rotation
-        const partialRotation = distance % 100;
-
         if (direction === "L") {
-            const leftRotation = dialPosition - partialRotation;
-            dialPosition = leftRotation >= 0 ? leftRotation : 100 + leftRotation;
+            dialPosition = (dialPosition - distance) % 100;
         }
         if (direction === "R") {
-            const rightRotation = dialPosition + partialRotation;
-            dialPosition = rightRotation <= 99 ? rightRotation : rightRotation - 100;
+            dialPosition = (dialPosition + distance) % 100;
         }
 
         if (dialPosition === 0) {
