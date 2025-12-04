@@ -1,9 +1,9 @@
 import {createReadlineInterface} from "../utils/read-file.js";
 
 const neighbouringPositions = [
-    [-1,-1], [-1, 0], [-1, 1],
-    [0, -1], [0, 1],
-    [1, -1], [1, 0], [1, 1]
+    { x: -1, y: -1 }, { x: -1, y: 0 }, { x: -1, y: 1 },
+    { x: 0, y: -1 }, { x: 0, y: 1 },
+    { x: 1, y: -1 }, { x: 1, y: 0 }, { x: 1, y: 1 }
 ];
 
 async function findAccessiblePaperRolls() {
@@ -19,8 +19,8 @@ async function findAccessiblePaperRolls() {
         for (let j = 0; j < paperGrid[i].length; j++) {
             if (paperGrid[i][j] === "@") {
                 let neighbouringRollCount = 0;
-                neighbouringPositions.forEach(position => {
-                    if (paperGrid[i + position[0]] && paperGrid[i + position[0]][j + position[1]] === "@") {
+                neighbouringPositions.forEach(({ x, y }) => {
+                    if (paperGrid[i + x] && paperGrid[i + x][j + y] === "@") {
                         neighbouringRollCount++;
                     }
                 });
